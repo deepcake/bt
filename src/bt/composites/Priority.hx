@@ -4,7 +4,7 @@ package bt.composites;
  * ...
  * @author octocake1
  */
-class Priority<T> extends Composite<T> {
+class Priority<T:Blackboard> extends Composite<T> {
 	
 	
 	public function new(children:Array<Behavior<T>>) super(children);

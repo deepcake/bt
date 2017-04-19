@@ -4,9 +4,9 @@ package bt.decorators;
  * ...
  * @author octocake1
  */
-class Failer<T> extends Decorator<T> {
+class Failer<T:Blackboard> extends Decorator<T> {
 	
-
+	
 	public function new(child:Behavior<T>) super(child);
 	
 	
