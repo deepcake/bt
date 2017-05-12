@@ -12,20 +12,20 @@ import haxe.unit.TestCase;
 
 /**
  * ...
- * @author octocake1
+ * @author https://github.com/wimcake
  */
 class TestSmoke extends TestCase {
-	
+
 	public function new() {
 		super();
 	}
-	
+
 	public function test1() {
 		var bt = new BehaviorTree(
 			new Sequence([
-			
+
 				new ContinuousPriority([
-				
+
 					new ContinuousSequence([
 						new SomeCheck('A1'),
 						new SomeCheck('A2'),
@@ -44,26 +44,26 @@ class TestSmoke extends TestCase {
 						new SomeCheck('C3'),
 						new SomeProcess('C!'),
 					]),
-					
+
 					new Failer(new SomeProcess('Nothing to do')),
-				
+
 				]),
-			
+
 			])
-		
+
 		);
-		
+
 		var bb = new BlackishBoard();
-		
+
 		inline function go() { trace('---'); bt.execute(bb, .0); }
-		
+
 		go();
 		go();
 		go();
 		go();
 		go();
 	}
-	
+
 }
 
 class SomeCheck extends Behavior<BlackishBoard> {
@@ -91,5 +91,5 @@ class SomeProcess extends Behavior<BlackishBoard> {
 }
 
 class BlackishBoard extends Blackboard {
-	
+
 }
