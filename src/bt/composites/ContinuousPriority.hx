@@ -11,14 +11,14 @@ class ContinuousPriority<T:Blackboard> extends Composite<T> {
 
 
 	override public function update(context:T, dt:Float):Status {
-		var i:Int = context.getIndex(id);
+		var i = context.getContinue(id);
 
 		while (i < count) {
 
-			var status = children[i].execute(context, dt);
+			var status = children[i].exec(context, dt);
 
 			if (status != Failure) {
-				if (status == Running) context.setIndex(id, i);
+				if (status == Running) context.setContinue(id, i);
 				return status;
 			}
 

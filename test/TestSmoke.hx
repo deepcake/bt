@@ -55,7 +55,7 @@ class TestSmoke extends TestCase {
 
 		var bb = new BlackishBoard();
 
-		inline function go() { trace('---'); bt.execute(bb, .0); }
+		inline function go() { trace('---'); bt.run(bb, .0); }
 
 		go();
 		go();

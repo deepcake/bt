@@ -19,7 +19,7 @@ class Composite<T:Blackboard> extends Behavior<T> {
 
 	override public function close(context:T) {
 		for (ch in children) {
-			if (context.opened(ch.id)) {
+			if (context.isOpened(ch.id)) {
 				ch.close(context);
 				context.close(ch.id);
 			}

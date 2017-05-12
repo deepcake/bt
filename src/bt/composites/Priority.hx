@@ -15,7 +15,7 @@ class Priority<T:Blackboard> extends Composite<T> {
 
 		while (i < count) {
 
-			var status = children[i].execute(context, dt);
+			var status = children[i].exec(context, dt);
 
 			if (status != Failure) return status;
 

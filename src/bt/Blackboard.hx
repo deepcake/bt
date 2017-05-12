@@ -7,29 +7,30 @@ package bt;
 class Blackboard {
 
 
-	var indexes:Map<Int, Int> = new Map();
+	var runmemory:Map<Int, Int> = new Map();
 
 
 	public function new() { }
 
-	public function open(id:Int) {
-		indexes[id] = 0;
+
+	@:noCompletion @:allow(bt) inline function open(id:Int) {
+		runmemory[id] = 0;
 	}
 
-	public function close(id:Int) {
-		indexes[id] = -1;
+	@:noCompletion @:allow(bt) inline function close(id:Int) {
+		runmemory[id] = -1;
 	}
 
-	public function setIndex(id:Int, i:Int) {
-		indexes[id] = i;
+	@:noCompletion @:allow(bt) inline function isOpened(id:Int):Bool {
+		return runmemory.exists(id) && runmemory[id] > -1;
 	}
 
-	public function getIndex(id:Int):Int {
-		return indexes.exists(id) ? indexes[id] : -1;
+	@:noCompletion @:allow(bt) inline function setContinue(id:Int, i:Int) {
+		runmemory[id] = i;
 	}
 
-	public function opened(id:Int):Bool {
-		return indexes.exists(id) ? indexes[id] > -1 : false;
+	@:noCompletion @:allow(bt) inline function getContinue(id:Int):Int {
+		return runmemory.exists(id) ? runmemory[id] : -1;
 	}
 
 }

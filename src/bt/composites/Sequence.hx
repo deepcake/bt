@@ -15,7 +15,7 @@ class Sequence<T:Blackboard> extends Composite<T> {
 
 		while (i < count) {
 
-			var status = children[i].execute(context, dt);
+			var status = children[i].exec(context, dt);
 
 			if (status != Success) return status;
 

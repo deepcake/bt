@@ -7,14 +7,14 @@ package bt;
 class Behavior<T:Blackboard> {
 
 
-	static var __SEQUENCE = 0;
+	static var __IDSEQUENCE = 0;
 
 
 	public var id:Int;
 
 
 	public function new() {
-		id = ++__SEQUENCE;
+		id = ++__IDSEQUENCE;
 	}
 
 
@@ -25,8 +25,8 @@ class Behavior<T:Blackboard> {
 	public function close(context:T) { }
 
 
-	public function execute(context:T, dt:Float):Status {
-		if (!context.opened(id)) {
+	@:allow(bt) function exec(context:T, dt:Float):Status {
+		if (!context.isOpened(id)) {
 			open(context);
 			context.open(id);
 		}

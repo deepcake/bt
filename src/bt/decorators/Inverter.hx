@@ -11,7 +11,7 @@ class Inverter<T:Blackboard> extends Decorator<T> {
 
 
 	override public function update(context:T, dt:Float):Status {
-		var status = child.execute(context, dt);
+		var status = child.exec(context, dt);
 		return status == Success ? Failure : (status == Failure ? Success : status);
 	}
 

@@ -11,7 +11,7 @@ class Failer<T:Blackboard> extends Decorator<T> {
 
 
 	override public function update(context:T, dt:Float):Status {
-		child.execute(context, dt);
+		child.exec(context, dt);
 		return Failure;
 	}
 
