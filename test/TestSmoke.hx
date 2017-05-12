@@ -8,6 +8,7 @@ import bt.composites.ContinuousPriority;
 import bt.composites.ContinuousSequence;
 import bt.composites.Sequence;
 import bt.decorators.Failer;
+import bt.decorators.Succeeder;
 import haxe.unit.TestCase;
 
 /**
@@ -24,28 +25,31 @@ class TestSmoke extends TestCase {
 		var bt = new BehaviorTree(
 			new Sequence([
 
+				new Succeeder(new SomeCheck('Some everytime check')),
+
 				new ContinuousPriority([
 
 					new ContinuousSequence([
-						new SomeCheck('A1'),
-						new SomeCheck('A2'),
-						new SomeCheck('A3'),
-						new SomeProcess('A!'),
+						new SomeCheck('Check 1 for A'),
+						new SomeCheck('Check 2 for A'),
+						new SomeCheck('Check 3 for A'),
+						new SomeProcess('Do A!'),
+						new Succeeder(new SomeCheck('Complete A')),
 					]),
 					new ContinuousSequence([
-						new SomeCheck('B1'),
-						new SomeCheck('B2'),
-						new SomeCheck('B3'),
-						new SomeProcess('B!'),
+						new SomeCheck('Check 1 for B'),
+						new SomeCheck('Check 2 for B'),
+						new SomeProcess('Do B!'),
+						new Succeeder(new SomeCheck('Complete B')),
 					]),
 					new ContinuousSequence([
-						new SomeCheck('C1'),
-						new SomeCheck('C2'),
-						new SomeCheck('C3'),
-						new SomeProcess('C!'),
+						new SomeCheck('Check 1 for C'),
+						new SomeCheck('Check 2 for C'),
+						new SomeProcess('Do C!'),
+						new Succeeder(new SomeCheck('Complete C')),
 					]),
 
-					new Failer(new SomeProcess('Nothing to do')),
+					new Failer(new SomeProcess('Do nothing')),
 
 				]),
 
@@ -55,7 +59,7 @@ class TestSmoke extends TestCase {
 
 		var bb = new BlackishBoard();
 
-		inline function go() { trace('---'); bt.run(bb, .0); }
+		inline function go() { trace('\n---\n'); bt.run(bb, .0); }
 
 		go();
 		go();
