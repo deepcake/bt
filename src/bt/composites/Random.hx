@@ -11,7 +11,7 @@ class Random<T:Blackboard> extends Composite<T> {
 
 
     override public function update(context:T, dt:Float):Status {
-        var i = context.isOpened(id) ? Std.random(count) : context.getContinue(id);
+        var i = context.isOpened(id) ? context.getContinue(id) : Std.random(count);
 
         var status = children[i].exec(context, dt);
 
