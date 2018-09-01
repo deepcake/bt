@@ -17,91 +17,91 @@ import haxe.unit.TestCase;
  */
 class TestSmoke extends TestCase {
 
-	public function new() {
-		super();
-	}
+    public function new() {
+        super();
+    }
 
-	public function test1() {
-		var bt = new BehaviorTree(
-			new Sequence([
+    public function test1() {
+        var bt = new BehaviorTree(
+            new Sequence([
 
-				new Succeeder(new SomeCheck('Some everytime check')),
+                new Succeeder(new SomeCheck('Some everytime check')),
 
-				new ContinuousPriority([
+                new ContinuousPriority([
 
-					new ContinuousSequence([
-						new SomeCheck('Check 1 for A'),
-						new SomeCheck('Check 2 for A'),
-						new SomeCheck('Check 3 for A'),
-						new SomeProcess('Do A!'),
-						new Succeeder(new SomeCheck('Complete A')),
-					]),
+                    new ContinuousSequence([
+                        new SomeCheck('Check 1 for A'),
+                        new SomeCheck('Check 2 for A'),
+                        new SomeCheck('Check 3 for A'),
+                        new SomeProcess('Do A!'),
+                        new Succeeder(new SomeCheck('Complete A')),
+                    ]),
 
-					new ContinuousSequence([
-						new SomeCheck('Check 1 for B'),
-						new SomeCheck('Check 2 for B'),
-						new SomeProcess('Do B!'),
-						new Succeeder(new SomeCheck('Complete B')),
-					]),
+                    new ContinuousSequence([
+                        new SomeCheck('Check 1 for B'),
+                        new SomeCheck('Check 2 for B'),
+                        new SomeProcess('Do B!'),
+                        new Succeeder(new SomeCheck('Complete B')),
+                    ]),
 
-					new ContinuousSequence([
-						new SomeCheck('Check 1 for C'),
-						new SomeCheck('Check 2 for C'),
-						new SomeProcess('Do C!'),
-						new Succeeder(new SomeCheck('Complete C')),
-					]),
+                    new ContinuousSequence([
+                        new SomeCheck('Check 1 for C'),
+                        new SomeCheck('Check 2 for C'),
+                        new SomeProcess('Do C!'),
+                        new Succeeder(new SomeCheck('Complete C')),
+                    ]),
 
-					new Failer(new SomeProcess('Do nothing')),
+                    new Failer(new SomeProcess('Do nothing')),
 
-				]),
+                ]),
 
-			])
+            ])
 
-		);
+        );
 
-		var bb = new BlackishBoard();
+        var bb = new BlackishBoard();
 
-		inline function go() { trace('\n---\n'); bt.update(bb, .0); }
+        inline function go() { trace('\n---\n'); bt.update(bb, .0); }
 
-		go();
-		go();
-		go();
-		go();
-		go();
+        go();
+        go();
+        go();
+        go();
+        go();
 
-		assertTrue(true);
-	}
+        assertTrue(true);
+    }
 
 }
 
 class SomeCheck extends Behavior<BlackishBoard> {
-	var val = '';
-	public function new(val:String) {
-		super();
-		this.val = val;
-	}
-	override public function update(context:BlackishBoard, dt:Float):Status {
-		var r = Math.random() > .5 ? Status.Success : Status.Failure;
-		trace('$val ($r)');
-		return r;
-	}
+    var val = '';
+    public function new(val:String) {
+        super();
+        this.val = val;
+    }
+    override public function update(context:BlackishBoard, dt:Float):Status {
+        var r = Math.random() > .5 ? Status.Success : Status.Failure;
+        trace('$val ($r)');
+        return r;
+    }
 }
 
 class SomeProcess extends Behavior<BlackishBoard> {
-	var val = '';
-	public function new(val:String) {
-		super();
-		this.val = val;
-	}
-	override public function update(context:BlackishBoard, dt:Float):Status {
-		var r = Math.random() > .7 ? Status.Success : Status.Running;
-		trace('$val ($r)');
-		return r;
-	}
+    var val = '';
+    public function new(val:String) {
+        super();
+        this.val = val;
+    }
+    override public function update(context:BlackishBoard, dt:Float):Status {
+        var r = Math.random() > .7 ? Status.Success : Status.Running;
+        trace('$val ($r)');
+        return r;
+    }
 }
 
 class BlackishBoard extends Blackboard {
 
-	public function new() {}
+    public function new() {}
 
 }

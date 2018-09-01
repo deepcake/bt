@@ -8,16 +8,16 @@ import haxe.unit.TestRunner;
  */
 class Main {
 
-	static public function main() {
-		var r = new TestRunner();
+    static public function main() {
+        var r = new TestRunner();
 
-		r.add(new TestSmoke());
+        r.add(new TestSmoke());
 
-		var ret = r.run();
+        var ret = r.run();
 
-		#if sys
-		Sys.exit(ret ? 0 : 1);
-		#end
-	}
+        #if sys
+        Sys.exit(ret ? 0 : 1);
+        #end
+    }
 
 }

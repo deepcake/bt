@@ -7,23 +7,23 @@ package bt.composites;
 class Composite<T:Blackboard> extends Behavior<T> {
 
 
-	var children:Array<Behavior<T>>;
-	var count:Int;
+    var children:Array<Behavior<T>>;
+    var count:Int;
 
 
-	public function new(children:Array<Behavior<T>>) {
-		super();
-		this.children = children;
-		this.count = children.length;
-	}
+    public function new(children:Array<Behavior<T>>) {
+        super();
+        this.children = children;
+        this.count = children.length;
+    }
 
-	override public function close(context:T) {
-		for (ch in children) {
-			if (context.isOpened(ch.id)) {
-				ch.close(context);
-				context.close(ch.id);
-			}
-		}
-	}
+    override public function close(context:T) {
+        for (ch in children) {
+            if (context.isOpened(ch.id)) {
+                ch.close(context);
+                context.close(ch.id);
+            }
+        }
+    }
 
 }

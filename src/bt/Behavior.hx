@@ -7,38 +7,38 @@ package bt;
 class Behavior<T:Blackboard> {
 
 
-	static var __IDSEQUENCE = 0;
+    static var __IDSEQUENCE = 0;
 
 
-	public var id:Int;
+    public var id:Int;
 
 
-	public function new() {
-		id = ++__IDSEQUENCE;
-	}
+    public function new() {
+        id = ++__IDSEQUENCE;
+    }
 
 
-	public function open(context:T) { }
+    public function open(context:T) { }
 
-	public function update(context:T, dt:Float):Status return Empty;
+    public function update(context:T, dt:Float):Status return Empty;
 
-	public function close(context:T) { }
+    public function close(context:T) { }
 
 
-	@:allow(bt) function exec(context:T, dt:Float):Status {
-		if (!context.isOpened(id)) {
-			open(context);
-			context.open(id);
-		}
+    @:allow(bt) function exec(context:T, dt:Float):Status {
+        if (!context.isOpened(id)) {
+            open(context);
+            context.open(id);
+        }
 
-		var status = update(context, dt);
+        var status = update(context, dt);
 
-		if (status != Running) {
-			close(context);
-			context.close(id);
-		}
+        if (status != Running) {
+            close(context);
+            context.close(id);
+        }
 
-		return status;
-	}
+        return status;
+    }
 
 }
