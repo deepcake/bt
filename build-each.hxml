@@ -1,3 +1,4 @@
 -main Main
 -cp src
 -cp test
+-lib hx3compat

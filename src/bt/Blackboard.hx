@@ -10,9 +10,6 @@ class Blackboard {
 	var runmemory:Map<Int, Int> = new Map();
 
 
-	public function new() { }
-
-
 	@:noCompletion @:allow(bt) inline function open(id:Int) {
 		runmemory[id] = 0;
 	}

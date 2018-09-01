@@ -36,12 +36,14 @@ class TestSmoke extends TestCase {
 						new SomeProcess('Do A!'),
 						new Succeeder(new SomeCheck('Complete A')),
 					]),
+
 					new ContinuousSequence([
 						new SomeCheck('Check 1 for B'),
 						new SomeCheck('Check 2 for B'),
 						new SomeProcess('Do B!'),
 						new Succeeder(new SomeCheck('Complete B')),
 					]),
+
 					new ContinuousSequence([
 						new SomeCheck('Check 1 for C'),
 						new SomeCheck('Check 2 for C'),
@@ -59,13 +61,15 @@ class TestSmoke extends TestCase {
 
 		var bb = new BlackishBoard();
 
-		inline function go() { trace('\n---\n'); bt.run(bb, .0); }
+		inline function go() { trace('\n---\n'); bt.update(bb, .0); }
 
 		go();
 		go();
 		go();
 		go();
 		go();
+
+		assertTrue(true);
 	}
 
 }
@@ -77,8 +81,9 @@ class SomeCheck extends Behavior<BlackishBoard> {
 		this.val = val;
 	}
 	override public function update(context:BlackishBoard, dt:Float):Status {
-		trace(val);
-		return Math.random() > .5 ? Status.Success : Status.Failure;
+		var r = Math.random() > .5 ? Status.Success : Status.Failure;
+		trace('$val ($r)');
+		return r;
 	}
 }
 
@@ -89,11 +94,14 @@ class SomeProcess extends Behavior<BlackishBoard> {
 		this.val = val;
 	}
 	override public function update(context:BlackishBoard, dt:Float):Status {
-		trace(val);
-		return Math.random() > .7 ? Status.Success : Status.Running;
+		var r = Math.random() > .7 ? Status.Success : Status.Running;
+		trace('$val ($r)');
+		return r;
 	}
 }
 
 class BlackishBoard extends Blackboard {
+
+	public function new() {}
 
 }

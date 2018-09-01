@@ -14,7 +14,7 @@ class BehaviorTree<T:Blackboard> {
 		this.root = root;
 	}
 
-	public function run(context:T, dt:Float):Status {
+	public function update(context:T, dt:Float):Status {
 		return root.exec(context, dt);
 	}
 
