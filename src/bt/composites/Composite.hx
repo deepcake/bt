@@ -1,5 +1,7 @@
 package bt.composites;
 
+using StringTools;
+
 /**
  * ...
  * @author https://github.com/wimcake
@@ -25,5 +27,13 @@ class Composite<T:Blackboard> extends Behavior<T> {
             }
         }
     }
+
+
+    override public function print() {
+        var out = [ for (ch in children) '\n' + ch.print() ].join('');
+        out = out.replace("\n", "\n\t");
+        return '$this:$id:[${out}\n]';
+    }
+
 
 }

@@ -18,4 +18,10 @@ class BehaviorTree<T:Blackboard> {
         return root.exec(context, dt);
     }
 
+
+    public function toString() {
+        return root.print();
+    }
+
+
 }

@@ -41,4 +41,10 @@ class Behavior<T:Blackboard> {
         return status;
     }
 
+
+    public function print() {
+        return '$this:$id';
+    }
+
+
 }

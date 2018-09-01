@@ -1,5 +1,7 @@
 package bt.decorators;
 
+using StringTools;
+
 /**
  * ...
  * @author https://github.com/wimcake
@@ -21,5 +23,12 @@ class Decorator<T:Blackboard> extends Behavior<T> {
             context.close(child.id);
         }
     }
+
+
+    override public function print() {
+        var out = ('\n' + child.print()).replace("\n", "\n\t");
+        return '$this:$id:{${out}\n}';
+    }
+
 
 }
