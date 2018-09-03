@@ -1,24 +1,26 @@
 package bt.composites;
 
+import bt.composites.ContinuousComposite.ContinuousContext;
+
 /**
  * ...
  * @author https://github.com/wimcake
  */
-class ContinuousPriority<T:Blackboard> extends Composite<T> {
+class ContinuousPriority<T:ContinuousContext> extends ContinuousComposite<T> {
 
 
     public function new(children:Array<Behavior<T>>) super(children);
 
 
     override public function update(context:T, dt:Float):Status {
-        var i = context.getContinue(id);
+        var i = context.continuous.get(id);
 
         while (i < count) {
 
             var status = children[i].exec(context, dt);
 
             if (status != Failure) {
-                if (status == Running) context.setContinue(id, i);
+                if (status == Running) context.continuous.set(id, i);
                 return status;
             }
 

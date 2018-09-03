@@ -1,10 +1,11 @@
 package bt.composites;
 
+import bt.Behavior.BehaviorContext;
 /**
  * ...
  * @author https://github.com/wimcake
  */
-class Priority<T:Blackboard> extends Composite<T> {
+class Priority<T:BehaviorContext> extends Composite<T> {
 
 
     public function new(children:Array<Behavior<T>>) super(children);

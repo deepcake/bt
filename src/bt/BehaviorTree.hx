@@ -1,10 +1,11 @@
 package bt;
 
+import bt.Behavior.BehaviorContext;
 /**
  * ...
  * @author https://github.com/wimcake
  */
-class BehaviorTree<T:Blackboard> {
+class BehaviorTree<T:BehaviorContext> {
 
 
     public var root:Behavior<T>;

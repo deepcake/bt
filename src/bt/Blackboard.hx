@@ -1,5 +1,6 @@
 package bt;
 
+import haxe.ds.Map;
 /**
  * ...
  * @author https://github.com/wimcake
@@ -7,27 +8,22 @@ package bt;
 class Blackboard {
 
 
-    var runmemory:Map<Int, Int> = new Map();
+    var behaviors:Map<Int, Bool> = new Map();
+
+    public var continuous:Map<Int, Int> = new Map();
 
 
-    @:noCompletion @:allow(bt) inline function open(id:Int) {
-        runmemory[id] = 0;
+    public function open(id:Int) {
+        behaviors[id] = true;
     }
 
-    @:noCompletion @:allow(bt) inline function close(id:Int) {
-        runmemory[id] = -1;
+    public function close(id:Int) {
+        behaviors[id] = false;
     }
 
-    @:noCompletion @:allow(bt) inline function isOpened(id:Int):Bool {
-        return runmemory.exists(id) && runmemory[id] > -1;
+    public function isOpened(id:Int):Bool {
+        return behaviors.exists(id) && behaviors[id];
     }
 
-    @:noCompletion @:allow(bt) inline function setContinue(id:Int, i:Int) {
-        runmemory[id] = i;
-    }
-
-    @:noCompletion @:allow(bt) inline function getContinue(id:Int):Int {
-        return runmemory.exists(id) ? runmemory[id] : -1;
-    }
 
 }

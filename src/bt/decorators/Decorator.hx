@@ -1,12 +1,13 @@
 package bt.decorators;
 
+import bt.Behavior.BehaviorContext;
 using StringTools;
 
 /**
  * ...
  * @author https://github.com/wimcake
  */
-class Decorator<T:Blackboard> extends Behavior<T> {
+class Decorator<T:BehaviorContext> extends Behavior<T> {
 
 
     var child:Behavior<T>;

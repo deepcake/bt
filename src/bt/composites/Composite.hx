@@ -1,12 +1,13 @@
 package bt.composites;
 
+import bt.Behavior.BehaviorContext;
 using StringTools;
 
 /**
  * ...
  * @author https://github.com/wimcake
  */
-class Composite<T:Blackboard> extends Behavior<T> {
+class Composite<T:BehaviorContext> extends Behavior<T> {
 
 
     var children:Array<Behavior<T>>;
@@ -19,6 +20,7 @@ class Composite<T:Blackboard> extends Behavior<T> {
         this.count = children.length;
     }
 
+
     override public function close(context:T) {
         for (ch in children) {
             if (context.isOpened(ch.id)) {
@@ -30,8 +32,7 @@ class Composite<T:Blackboard> extends Behavior<T> {
 
 
     override public function print() {
-        var out = [ for (ch in children) '\n' + ch.print() ].join('');
-        out = out.replace("\n", "\n\t");
+        var out = ('\n' + [ for (ch in children) ch.print() ].join('\n')).replace("\n", "\n\t");
         return '$this:$id:[${out}\n]';
     }
 

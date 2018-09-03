@@ -1,10 +1,11 @@
 package bt.decorators;
 
+import bt.Behavior.BehaviorContext;
 /**
  * ...
  * @author https://github.com/wimcake
  */
-class Inverter<T:Blackboard> extends Decorator<T> {
+class Inverter<T:BehaviorContext> extends Decorator<T> {
 
 
     public function new(child:Behavior<T>) super(child);

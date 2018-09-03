@@ -4,7 +4,7 @@ package bt;
  * ...
  * @author https://github.com/wimcake
  */
-class Behavior<T:Blackboard> {
+class Behavior<T:BehaviorContext> {
 
 
     static var __IDSEQUENCE = 0;
@@ -47,4 +47,11 @@ class Behavior<T:Blackboard> {
     }
 
 
+}
+
+
+typedef BehaviorContext = {
+    function open(id:Int):Void;
+    function close(id:Int):Void;
+    function isOpened(id:Int):Bool;
 }
