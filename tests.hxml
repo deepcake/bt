@@ -1,0 +1,5 @@
+-cp test
+-lib bthx
+-lib buddy
+-main Run
+-dce full
