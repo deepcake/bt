@@ -4,7 +4,7 @@ import bt.composites.ContinuousComposite.ContinuousContext;
 
 /**
  * ...
- * @author https://github.com/wimcake
+ * @author https://github.com/deepcake
  */
 class Random<T:ContinuousContext> extends ContinuousComposite<T> {
 

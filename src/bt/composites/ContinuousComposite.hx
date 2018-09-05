@@ -2,6 +2,10 @@ package bt.composites;
 
 import bt.Behavior.BehaviorContext;
 
+/**
+ * ...
+ * @author https://github.com/deepcake
+ */
 class ContinuousComposite<T:ContinuousContext> extends Composite<T> {
 
 

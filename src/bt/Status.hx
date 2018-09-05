@@ -2,7 +2,7 @@ package bt;
 
 /**
  * ...
- * @author https://github.com/wimcake
+ * @author https://github.com/deepcake
  */
 @:enum abstract Status(Int) from Int to Int {
 

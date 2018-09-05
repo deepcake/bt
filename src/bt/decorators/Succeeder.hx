@@ -3,7 +3,7 @@ package bt.decorators;
 import bt.Behavior.BehaviorContext;
 /**
  * ...
- * @author https://github.com/wimcake
+ * @author https://github.com/deepcake
  */
 class Succeeder<T:BehaviorContext> extends Decorator<T> {
 

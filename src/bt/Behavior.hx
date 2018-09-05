@@ -2,7 +2,7 @@ package bt;
 
 /**
  * ...
- * @author https://github.com/wimcake
+ * @author https://github.com/deepcake
  */
 class Behavior<T:BehaviorContext> {
 

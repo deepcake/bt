@@ -3,7 +3,7 @@ package bt.composites;
 import bt.Behavior.BehaviorContext;
 /**
  * ...
- * @author https://github.com/wimcake
+ * @author https://github.com/deepcake
  */
 class Priority<T:BehaviorContext> extends Composite<T> {
 
