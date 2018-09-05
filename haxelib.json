@@ -1,0 +1,11 @@
+{
+  "name": "bthx",
+  "url" : "https://github.com/deepcake/bt",
+  "license": "MIT",
+  "tags": [],
+  "description": "Behavior Tree",
+  "version": "0.1.0",
+  "classPath": "src/",
+  "releasenote": "Alpha 1",
+  "contributors": [ "deepcake" ]
+}
