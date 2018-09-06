@@ -1,5 +1,5 @@
 -cp test
--lib bthx
+-cp src
 -lib buddy
 -main Run
 -dce full
