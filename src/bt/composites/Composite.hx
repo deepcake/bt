@@ -1,13 +1,12 @@
 package bt.composites;
 
-import bt.Behavior.BehaviorContext;
 using StringTools;
 
 /**
  * ...
  * @author https://github.com/deepcake
  */
-class Composite<T:BehaviorContext> extends Behavior<T> {
+class Composite<T> extends Behavior<T> {
 
 
     var children:Array<Behavior<T>>;

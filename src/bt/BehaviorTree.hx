@@ -1,11 +1,10 @@
 package bt;
 
-import bt.Behavior.BehaviorContext;
 /**
  * ...
  * @author https://github.com/deepcake
  */
-class BehaviorTree<T:BehaviorContext> {
+class BehaviorTree<T> {
 
 
     public var root:Behavior<T>;

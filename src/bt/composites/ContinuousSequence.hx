@@ -1,12 +1,10 @@
 package bt.composites;
 
-import bt.composites.ContinuousComposite.ContinuousContext;
-
 /**
  * ...
  * @author https://github.com/deepcake
  */
-class ContinuousSequence<T:ContinuousContext> extends ContinuousComposite<T> {
+class ContinuousSequence<T> extends ContinuousComposite<T> {
 
 
     public function new(children:Array<Behavior<T>>) super(children);

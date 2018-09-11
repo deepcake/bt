@@ -1,12 +1,10 @@
 package bt.composites;
 
-import bt.Behavior.BehaviorContext;
-
 /**
  * ...
  * @author https://github.com/deepcake
  */
-class ContinuousComposite<T:ContinuousContext> extends Composite<T> {
+class ContinuousComposite<T> extends Composite<T> {
 
 
     var index:Int = 0;
@@ -25,10 +23,4 @@ class ContinuousComposite<T:ContinuousContext> extends Composite<T> {
     }
 
 
-}
-
-
-typedef ContinuousContext = {
-    > BehaviorContext,
-    continuous:Map<Int, Int>
 }

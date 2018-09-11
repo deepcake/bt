@@ -1,11 +1,10 @@
 package bt.composites;
 
-import bt.Behavior.BehaviorContext;
 /**
  * ...
  * @author https://github.com/deepcake
  */
-class Priority<T:BehaviorContext> extends Composite<T> {
+class Priority<T> extends Composite<T> {
 
 
     public function new(children:Array<Behavior<T>>) super(children);
