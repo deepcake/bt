@@ -14,15 +14,15 @@ class Random<T:ContinuousContext> extends ContinuousComposite<T> {
 
     override function open(context:T) {
         super.open(context);
-        context.continuous.set(id, Std.random(count));
+        index = Std.random(count);
     }
 
     override public function update(context:T, dt:Float):Status {
-        var i = context.continuous.get(id);
+        var i = index;
 
         var status = children[i].exec(context, dt);
 
-        if (status == Running) context.continuous.set(id, i);
+        if (status == Running) index = i;
 
         return status;
     }

@@ -19,9 +19,8 @@ class Decorator<T:BehaviorContext> extends Behavior<T> {
     }
 
     override public function close(context:T) {
-        if (context.isOpened(child.id)) {
+        if (child.opened) {
             child.close(context);
-            context.close(child.id);
         }
     }
 

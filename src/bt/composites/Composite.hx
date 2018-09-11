@@ -23,9 +23,8 @@ class Composite<T:BehaviorContext> extends Behavior<T> {
 
     override public function close(context:T) {
         for (ch in children) {
-            if (context.isOpened(ch.id)) {
+            if (ch.opened) {
                 ch.close(context);
-                context.close(ch.id);
             }
         }
     }

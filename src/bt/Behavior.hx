@@ -13,6 +13,9 @@ class Behavior<T:BehaviorContext> {
     public var id:Int;
 
 
+    var opened:Bool;
+
+
     public function new() {
         id = ++__IDSEQUENCE;
     }
@@ -26,16 +29,16 @@ class Behavior<T:BehaviorContext> {
 
 
     @:allow(bt) function exec(context:T, dt:Float):Status {
-        if (!context.isOpened(id)) {
+        if (!opened) {
             open(context);
-            context.open(id);
+            opened = true;
         }
 
         var status = update(context, dt);
 
         if (status != Running) {
             close(context);
-            context.close(id);
+            opened = false;
         }
 
         return status;

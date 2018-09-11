@@ -13,14 +13,14 @@ class ContinuousPriority<T:ContinuousContext> extends ContinuousComposite<T> {
 
 
     override public function update(context:T, dt:Float):Status {
-        var i = context.continuous.get(id);
+        var i = index;
 
         while (i < count) {
 
             var status = children[i].exec(context, dt);
 
             if (status != Failure) {
-                if (status == Running) context.continuous.set(id, i);
+                if (status == Running) index = i;
                 return status;
             }
 
