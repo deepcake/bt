@@ -126,6 +126,108 @@ class Run extends buddy.SingleSuite {
 
                 });
 
+            });
+
+            describe("of composite combinations", {
+
+                var bt = new BehaviorTree(
+                    new Priority([
+
+                        new Failer(new Condition("Everytime check", true)),
+
+                        new ContinuousPriority([
+                            new Sequence([
+                                new Condition("A check (1/2)", true),
+                                new Condition("A check (2/2)", false),
+                                new ContinuousSequence([
+                                    new Timer("A", 1.0),
+                                    new Succeeder(new Condition("A complete", false)),
+                                ])
+                            ]),
+                            new Sequence([
+                                new Condition("B check (1/2)", true),
+                                new Condition("B check (2/2)", true),
+                                new ContinuousSequence([
+                                    new Timer("B", 1.0),
+                                    new Succeeder(new Condition("B complete", false)),
+                                ])
+                            ]),
+                            new Sequence([
+                                new Condition("C check (1/2)", true),
+                                new Condition("C check (2/2)", true),
+                                new ContinuousSequence([
+                                    new Timer("C", 1.0),
+                                    new Succeeder(new Condition("C complete", false)),
+                                ])
+                            ]),
+                        ])
+
+                    ])
+                );
+
+                var bb = new SpecBlackboard();
+
+                describe("after 1st update", {
+
+                    it("should be Running", {
+                        var result = bt.update(bb, .5);
+                        result.should.be(Status.Running);
+                    });
+                    it("should select B", {
+                        bb.last.should.be("B");
+                    });
+                    it("should have correct way log", {
+                        bb.log.should.be("Everytime check,A check (1/2),A check (2/2),B check (1/2),B check (2/2),B,");
+                    });
+
+                });
+
+                describe("after 2nd update", {
+
+                    it("should be Success", {
+                        var result = bt.update(bb, .5);
+                        result.should.be(Status.Success);
+                    });
+                    it("should complete B", {
+                        bb.last.should.be("B complete");
+                    });
+                    it("should have correct way log", {
+                        bb.log.should.be("Everytime check,A check (1/2),A check (2/2),B check (1/2),B check (2/2),B,Everytime check,B check (1/2),B check (2/2),B,B complete,");
+                    });
+
+                });
+
+                describe("after 3rd update", {
+
+                    it("should be Running", {
+                        var result = bt.update(bb, .5);
+                        result.should.be(Status.Running);
+                    });
+                    it("should select B", {
+                        bb.last.should.be("B");
+                    });
+                    it("should have correct way log", {
+                        bb.log.should.be("Everytime check,A check (1/2),A check (2/2),B check (1/2),B check (2/2),B,Everytime check,B check (1/2),B check (2/2),B,B complete," + 
+                                         "Everytime check,A check (1/2),A check (2/2),B check (1/2),B check (2/2),B,");
+                    });
+
+                });
+
+                describe("after 4th update", {
+
+                    it("should be Success", {
+                        var result = bt.update(bb, .5);
+                        result.should.be(Status.Success);
+                    });
+                    it("should complete B", {
+                        bb.last.should.be("B complete");
+                    });
+                    it("should have correct way log", {
+                        bb.log.should.be("Everytime check,A check (1/2),A check (2/2),B check (1/2),B check (2/2),B,Everytime check,B check (1/2),B check (2/2),B,B complete," + 
+                                         "Everytime check,A check (1/2),A check (2/2),B check (1/2),B check (2/2),B,Everytime check,B check (1/2),B check (2/2),B,B complete,");
+                    });
+
+                });
 
             });
 
