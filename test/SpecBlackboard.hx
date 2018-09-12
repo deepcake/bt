@@ -1,6 +1,6 @@
 package;
 
-class SpecBlackboard extends bt.Blackboard {
+class SpecBlackboard {
 
 
     public var timers:Map<Int, Float> = new Map();
