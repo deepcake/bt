@@ -4,13 +4,16 @@ package bt;
  * ...
  * @author https://github.com/deepcake
  */
-class Behavior<T:BehaviorContext> {
+class Behavior<T> {
 
 
     static var __IDSEQUENCE = 0;
 
 
     public var id:Int;
+
+
+    var opened:Bool;
 
 
     public function new() {
@@ -26,16 +29,16 @@ class Behavior<T:BehaviorContext> {
 
 
     @:allow(bt) function exec(context:T, dt:Float):Status {
-        if (!context.isOpened(id)) {
+        if (!opened) {
             open(context);
-            context.open(id);
+            opened = true;
         }
 
         var status = update(context, dt);
 
         if (status != Running) {
             close(context);
-            context.close(id);
+            opened = false;
         }
 
         return status;
@@ -47,11 +50,4 @@ class Behavior<T:BehaviorContext> {
     }
 
 
-}
-
-
-typedef BehaviorContext = {
-    function open(id:Int):Void;
-    function close(id:Int):Void;
-    function isOpened(id:Int):Bool;
 }

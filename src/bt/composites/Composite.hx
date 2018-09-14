@@ -1,13 +1,12 @@
 package bt.composites;
 
-import bt.Behavior.BehaviorContext;
 using StringTools;
 
 /**
  * ...
  * @author https://github.com/deepcake
  */
-class Composite<T:BehaviorContext> extends Behavior<T> {
+class Composite<T> extends Behavior<T> {
 
 
     var children:Array<Behavior<T>>;
@@ -23,9 +22,8 @@ class Composite<T:BehaviorContext> extends Behavior<T> {
 
     override public function close(context:T) {
         for (ch in children) {
-            if (context.isOpened(ch.id)) {
+            if (ch.opened) {
                 ch.close(context);
-                context.close(ch.id);
             }
         }
     }

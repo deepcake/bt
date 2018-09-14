@@ -1,11 +1,10 @@
 package bt.decorators;
 
-import bt.Behavior.BehaviorContext;
 /**
  * ...
  * @author https://github.com/deepcake
  */
-class Failer<T:BehaviorContext> extends Decorator<T> {
+class Failer<T> extends Decorator<T> {
 
 
     public function new(child:Behavior<T>) super(child);
